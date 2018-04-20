@@ -1,0 +1,24 @@
+{
+  "name": "debug-example",
+  "version": "1.0.0",
+  "description": "This is a demonstration on how to use debugging tools in Visual Studio Code.",
+  "main": "server.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha || true",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brandiqa/debug-example.git"
+  },
+  "keywords": [],
+  "author": "Michael Wanyoike",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/brandiqa/debug-example/issues"
+  },
+  "homepage": "https://github.com/brandiqa/debug-example#readme"
+}
