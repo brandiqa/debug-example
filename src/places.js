@@ -4,10 +4,9 @@ module.exports = {
   places,
 
   addPlace: (city, country) => {
-    // const id = ++places.length;
-    const id = places.length + 1;
+    const id = ++places.length;
     let numType = 'odd';
-    if (id % 2 === 0) {
+    if (id % 2) {
       numType = 'even';
     }
     places.push({
