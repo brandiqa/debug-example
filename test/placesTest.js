@@ -2,9 +2,6 @@ const { assert } = require('chai');
 const { places, addPlace } = require('../src/places');
 
 describe('place', () => {
-  beforeEach(() => {
-    places.length = 0;
-  });
 
   it('can add a place', () => {
     addPlace('Nairobi', 'Kenya');
