@@ -14,3 +14,8 @@ module.exports = {
     });
   },
 };
+
+module.exports.addPlace('Mombasa', 'Kenya');
+module.exports.addPlace('Kingston', 'Jamaica');
+module.exports.addPlace('Cape Town', 'South Africa');
+
