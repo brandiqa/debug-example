@@ -1,15 +1,17 @@
 window.addEventListener('load', () => {
+  // Load DOM roots
   const el = $('#app');
+  const placesTable = $('#places-table');
 
+  // Initialize empty places array
   const places = [];
-  // const table = $('#places-table'); // 1. Empty Table BUG
 
+  // Compile Templates
   const placesFormTemplate = Handlebars.compile($('#places-form-template').html());
   const placesTableTemplate = Handlebars.compile($('#places-table-template').html());
   const convertTemplate = Handlebars.compile($('#convert-template').html());
 
   const addPlace = (city, country) => {
-    // const id = ++places.length; // 2. Incorrect Increment Bug
     const id = places.length + 1;
     const numType = (id % 2 === 0) ? 'even' : 'odd';
     places.push({
@@ -17,13 +19,16 @@ window.addEventListener('load', () => {
     });
   };
 
+  // Populate places array
   addPlace('Nairobi', 'Kenya');
 
+  // Initialize REST API client
   const api = axios.create({
     baseURL: 'https://free.currencyconverterapi.com/api/v5',
-    timeout: 5000,
+    timeout: 1000,
   });
 
+  // Initialize Client-side router
   const router = new Router({
     mode: 'history',
     page404: (path) => {
@@ -32,7 +37,9 @@ window.addEventListener('load', () => {
     },
   });
 
+  // Places View - '/'
   router.add('/', () => {
+    // Display Places Form
     const html = placesFormTemplate();
     el.html(html);
     // Form Validation Rules
@@ -42,9 +49,9 @@ window.addEventListener('load', () => {
         country: 'empty',
       },
     });
-    const placesTable = $('#places-table');
+    // Display Places Table
     const tableHtml = placesTableTemplate({ places });
-    placesTable.html(tableHtml); // TODO : Remove this to recreate bug
+    placesTable.html(tableHtml);
     $('.submit').on('click', () => {
       const city = $('#city').val();
       const country = $('#country').val();
@@ -76,6 +83,7 @@ window.addEventListener('load', () => {
     }
   };
 
+  // Handle Convert Button Clicks
   const convertHandler = () => {
     if ($('.ui.form').form('is valid')) {
       // hide error message
@@ -89,6 +97,7 @@ window.addEventListener('load', () => {
     return true;
   }
 
+  // Convert View - '/convert'
   router.add('/convert', async () => {
     let html = convertTemplate();
     el.html(html);
@@ -114,8 +123,7 @@ window.addEventListener('load', () => {
     }
   });
 
-  // const path = window.location.path; BUG 3
-  router.navigateTo(window.location.pathname);
+  router.navigateTo(window.location.path);
 
   // Navigate to clicked route
   $('a').on('click', (event) => {
