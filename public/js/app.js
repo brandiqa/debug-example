@@ -123,7 +123,7 @@ window.addEventListener('load', () => {
     }
   });
 
-  router.navigateTo(window.location.path);
+  router.navigateTo(window.location.pathname);
 
   // Navigate to clicked route
   $('a').on('click', (event) => {
