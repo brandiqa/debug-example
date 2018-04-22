@@ -25,7 +25,7 @@ window.addEventListener('load', () => {
   // Initialize REST API client
   const api = axios.create({
     baseURL: 'https://free.currencyconverterapi.com/api/v5',
-    timeout: 1000,
+    timeout: 5000,
   });
 
   // Initialize Client-side router
